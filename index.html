@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>test_test</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="css/base.css" rel="stylesheet">
+
+</head>
+
+
+<body id="page-top" onload="members_sidebar_init(); current_URL_topbar(); getCommits_index(); getIssues_index(); getWeeklyCommits_index();getWeeklyIndividualCommits_index(1);printing_the_file_details()">
+
+    <!--Page Wrapper-->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">MENU</div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="index.html">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Members</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+<!--                    used the chart-area-scroll in the css for adding scroll-->
+                    <div id="sidebarMember" class="bg-white py-2 collapse-inner rounded chart-area-scroll">
+                        <h6 class="collapse-header">Members:</h6>
+                        <a class="collapse-item" href="Members.html">All Members</a>
+                    </div>
+                </div>
+            </li>
+
+          <!-- Sidebar Toggler (Sidebar) -->
+          <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+          </div>
+
+        </ul>
+        <!-- End of Sidebar -->
+
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!--Top Bar-->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+            <!-- Topbar Search -->
+            <form name="new_API_URL" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                <div class="input-group">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="URL for API..." name="URL">
+                    <div class="input-group-append">
+                        <button id="URLbutton_index" class="btn btn-primary" type="button" value="urlbutton" onclick="current_URL_loading();">
+                            <i id="search_sign" class="fas fa-search fa-sm"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <li class="nav-item">
+              <a class="text-area" id="current_URL"></a>
+            </li>
+
+        <!--topbar end-->
+        </nav>
+
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+
+            </div>
+
+            <!-- Start of 1st row-->
+            <div class="row">
+                <!-- Pie Chart -->
+                <div class="col-xl-8 col-lg-7">
+                  <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                      <h6 class="m-0 font-weight-bold text-primary">Team Contributions</h6>
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                      <div class="chart-area">
+                        <div class="chart-pie pt-4 pb-2">
+                            <canvas id="myPieChart"></canvas>
+                        </div>
+                        <div class="mt-4 text-center small" id="MembersPieChart">
+
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!--Team GIT information -->
+                <div class="col-xl-4 col-lg-5">
+                    <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                          <h6 class="m-0 font-weight-bold text-primary">General GIT Information</h6>
+                        </div>
+                        <!-- Team information body-->
+                        <div class="card-body">
+                            <div class="chart-area-scroll">
+                                <i id="teamStatistics">
+                                </i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End of 1st row -->
+
+            <!--Start of 2nd row-->
+            <div class="row">
+                <div class="col-xl-12 col-lg-7">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Overall Timeline</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-area">
+                                <canvas id="myAreaChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End of 2nd row-->
+
+            <!--Start of 3rd row-->
+            <div class="row">
+                <div class="col-xl-12 col-lg-7">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <h6 class="m-0 font-weight-bold text-primary">Work Timeline</h6>
+
+                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Week 1
+                            </button>
+                            <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" onclick="getWeeklyIndividualCommits_index(1);">Week1</a>
+                                <a class="dropdown-item" onclick="getWeeklyIndividualCommits_index(2);">Week2</a>
+                                <a class="dropdown-item" onclick="getWeeklyIndividualCommits_index(3);">Week3</a>
+                                <a class="dropdown-item" onclick="getWeeklyIndividualCommits_index(4);">Week4</a>
+                                <a class="dropdown-item" onclick="getWeeklyIndividualCommits_index(5);">Week5</a>
+                                <a class="dropdown-item" onclick="getWeeklyIndividualCommits_index(6);">Week6</a>
+                                <a class="dropdown-item" onclick="getWeeklyIndividualCommits_index(7);">Week7</a>
+                                <a class="dropdown-item" onclick="getWeeklyIndividualCommits_index(8);">Week8</a>
+                                <a class="dropdown-item" onclick="getWeeklyIndividualCommits_index(9);">Week9</a>
+                                <a class="dropdown-item" onclick="getWeeklyIndividualCommits_index(10);">Week10</a>
+                                <a class="dropdown-item" onclick="getWeeklyIndividualCommits_index(11);">Week11</a>
+                                <a class="dropdown-item" onclick="getWeeklyIndividualCommits_index(12);">Week12</a>
+                            </div>
+
+                        </div>
+                        <div class="card-body">
+
+                            <div class="chart-area">
+                                <canvas id="myBarChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End of 3rd row-->
+
+            <!--Start of 4th row-->
+            <div class="row">
+                <div class="col-xl-6 col-lg-7">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Team Rankings</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-smaller">
+                                <i id="memberRankings">
+                                </i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-6 col-lg-7">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">File Rankings</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-smaller">
+                                <i id="file_details">
+                                </i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End of 4th row-->
+
+        </div>
+        <!-- End of Main Content -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+=======
+
+    <!--JavaScript-->
+    <script src="js/API.js"></script>
+    <script src="js/topbar.js"></script>
+    <script src="js/charts.js"></script>
+    <script src="js/API_index.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/API_members.js"></script>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/base.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="js/demo/chart-area-demo.js"></script>
+    <script src="js/demo/chart-pie-demo.js"></script>
+</body>
+</html>

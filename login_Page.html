@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<title>Main Page</title>
+<link rel="stylesheet" type="text/css" href="Login_Page/login_page.css">
+<script src="Login_Page/login.js"></script>
+
+<!-- Top bar -->
+<body>
+<div id="topbar">
+<p align="right"><a href="https://www.linkedin.com"><img src="Login_Page/linkedln.png" style="width:30px; border-radius: 12px;"></a>&nbsp;&nbsp;
+<span></span> <a href="https://twitter.com"><img src="Login_Page/twitter.png" style="width:30px; border-radius: 12px;"> </a> &nbsp;&nbsp;<span></span> <a href="https://about.gitlab.com/"><img src="Login_Page/gitlab.png" style="width:30px; border-radius: 12px;"></a></p>
+</div>
+<br>
+  
+<!-- Search Bar, and Buttons -->
+<br><br>
+<div id="search">
+  <p> <img src="Login_Page/logo1.JPG" alt="logo" class="logo"></p>
+  
+   <form id="searchbar" name="new_API_URL_login"><br>
+  <input id="URL_login"type="text" size="75" placeholder="Enter URL" name="uname" required style="width:auto; "><br>
+  <br>
+   
+    <button type="button" id="URLbutton_login" value="urlbutton" onclick="validateform_login();" style="width:auto; border-radius: 12px;  background-color: #2554C7; ">URL Search</button>
+</form>
+
+<button onclick="document.getElementById('id01').style.display='block'" style="width:auto; border-radius: 12px; background-color: #2554C7;">Login</button>
+
+<div id="id01" class="modal">
+  
+  <form class="modal-content animate" action="/action_page.php">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src="Login_Page/GitHub-Mark.png" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container">
+      <label for="uname" style="width:auto;"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="uname" required>
+
+      <label for="psw" style="width:auto;"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" required>
+        
+      <button type="submit">Login</button>
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+      <!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
+    </div>
+  </form>
+</div>
+  </div>
+</html>
