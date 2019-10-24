@@ -122,7 +122,7 @@ function getContributorNames_API(contributors,count){
     for(let i =0; i<count; i++){
         let member_request = new XMLHttpRequest();
         let name;
-        member_request.open('GET', "https://api.github.com/users/" + contributors[i] + '?access_token=dc4de003288be13bc5b89e829c1b04fcbd8ef316', false);
+        member_request.open('GET', "https://api.github.com/users/" + contributors[i] + '?access_token=5835a6b68b642986736d75f4f4995f4461846e9e ', false);
         member_request.onload = function(){
             let data = JSON.parse(this.response);
             if (data["name"] != null){

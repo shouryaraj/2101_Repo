@@ -3,7 +3,7 @@ let pieChart, lineChart, barChart;
 function getURL_index(inputURL, information){
     input = inputURL.replace("https://github.com/","");
     input = input.replace(".git","");
-    let apidata = "https://api.github.com/repos/" + input + "/" + information + '?access_token=dc4de003288be13bc5b89e829c1b04fcbd8ef316';
+    let apidata = "https://api.github.com/repos/" + input + "/" + information + '?access_token=5835a6b68b642986736d75f4f4995f4461846e9e ';
     return apidata;
 }
 
@@ -170,14 +170,14 @@ function try_new_url_index(input, output){
     input =input.replace("https://github.com/","");
     input = input.replace(".git","");
     output.innerHTML += "<br><b>Members of Repository: </b><br>";
-    let apidata = "https://api.github.com/repos/" + input + "/contributors" +'?access_token=dc4de003288be13bc5b89e829c1b04fcbd8ef316';
+    let apidata = "https://api.github.com/repos/" + input + "/contributors" +'?access_token=5835a6b68b642986736d75f4f4995f4461846e9e ';
     let request = new XMLHttpRequest();
     request.open('GET', apidata, true);
     request.onload = function(){
         let data = JSON.parse(this.response);
         data.forEach(member => {
             let member_request = new XMLHttpRequest();
-            member_request.open('GET', "https://api.github.com/users/" + member["login"] + '?access_token=dc4de003288be13bc5b89e829c1b04fcbd8ef316', true);
+            member_request.open('GET', "https://api.github.com/users/" + member["login"] + '?access_token=5835a6b68b642986736d75f4f4995f4461846e9e ', true);
             member_request.onload = function(){
                 let data = JSON.parse(this.response);
                 if (data["name"] != null){
@@ -202,7 +202,7 @@ function printing_the_file_details(){
       html_end = '</i>'
 
       var block_to_insert ;
-      var container_block ; 
+      var container_block ;
     let ordinal_indicator = ["1st", "2nd", "3rd", "4th"]
 
       block_to_insert = document.createElement( 'i' );
